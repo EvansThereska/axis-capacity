@@ -1,3 +1,10 @@
+BEGIN
+   IF NOT EXISTS (select 1 from dbo.Terminals where name = 'DAGENHAM')
+   BEGIN
+       insert into dbo.Terminals(name) values ('DAGENHAM');
+   END
+END
+
 INSERT INTO dbo.Capacity(terminal, shift, avg_load, avg_deliveries, mon, tue, wed, thu, fri, sat, sun) VALUES ('Dagenham', 'AM', 34498, 1.62, 7, 7, 7, 7, 7, 5, 5);
 INSERT INTO dbo.Capacity(terminal, shift, avg_load, avg_deliveries, mon, tue, wed, thu, fri, sat, sun) VALUES ('Dagenham', 'PM', 34498, 1.61, 3, 3, 3, 3, 3, 2, 3);
 
