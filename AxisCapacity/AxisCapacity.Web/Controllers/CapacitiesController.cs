@@ -100,7 +100,16 @@ namespace AxisCapacity.Web.Controllers
 
             var monthCapacity = _repository.GetDateCapacities(terminal, null, firstDayOfMonth, lastDayOfMonth);
 
-            var finalResult = weekCapacity.Concat(monthCapacity);
+            var finalResult = weekCapacity.Concat(monthCapacity).ToList();
+
+            foreach (var item in finalResult)
+            {
+                if (!item.Capacity.HasValue)
+                {
+                    item.Capacity = _engine.CalculateCapacity(item.Load, item.Deliveries, item.Shifts);
+                }
+            }
+
 
             return Ok(finalResult);
         }

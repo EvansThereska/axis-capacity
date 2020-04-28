@@ -7,7 +7,10 @@ namespace AxisCapacity.Data
     {
         public string Depot { get; set; }
         public string Day { get; set; }
+        
+        [JsonConverter(typeof(OnlyDateConverter))]
         public DateTime? Date { get; set; }
+        
         public string Shift { get; set; }
         public int? Load { get; set; }
         public decimal? Deliveries { get; set; }
